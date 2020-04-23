@@ -1,9 +1,9 @@
 package redismap
 
 import (
-	`go-authmanager/cache`
 	`fmt`
 	`github.com/gomodule/redigo/redis`
+	`go-authmanager/cache`
 )
 
 /**
@@ -68,10 +68,10 @@ func DeleteTable(table string) bool {
 	if err != nil {
 		fmt.Println("hkeys failed", err.Error())
 	} else {
-		fmt.Printf("myhash's keys is :")
+		//fmt.Printf("myhash's keys is :")
 		for _, v := range resKeys {
 			_, err := rc.Do("HDEL", table, v)
-			fmt.Println("键值：" + v)
+			//fmt.Println("键值：" + v)
 			if err != nil {
 				fmt.Println("redis HDEL failed:", err)
 				return false

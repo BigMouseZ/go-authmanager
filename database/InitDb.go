@@ -23,7 +23,7 @@ func Dbinit() *gorm.DB {
 
 func NewConn() *gorm.DB {
 	var err error
-	Db, err = gorm.Open("postgres", "host=49.234.235.249 port=5432 user=pgsql dbname=authtest password=pgsql sslmode=disable")
+	Db, err = gorm.Open("postgres", "host=192.168.147.129 port=5432 user=pgsql dbname=authtest password=pgsql sslmode=disable")
 	if err != nil {
 		panic("连接数据库失败:" + err.Error())
 	}

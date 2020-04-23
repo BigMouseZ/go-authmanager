@@ -58,23 +58,7 @@ func Login(c *gin.Context) {
 				}
 			}
 		}
-		/*
-		   //组织数据返回
-		         Map<String, Object> response_map = new HashMap<>();
-		         response_map.put("loginName", userReturn.getLoginName());
-		         response_map.put("realName", userReturn.getRealName());
-		         response_map.put("headIcon", userReturn.getHeadIcon());
-		         response_map.put("sessionId", current_session_id);
-		         response_map.put("userId", userReturn.getGuid());
-		         //缓存用户信息和sessionid的捆绑
-		         Long seconds = cmsApi.getParamItemLongValue(ParameterRedisKey.param_userAuthority_option.param_userAuthority_invalidSeconds);
-		         long secondsLo = seconds == null ? 7200 : seconds.longValue();
-		         redisItemCacheService.setByKey(CmsRedisKey.USER_LOGIN_INFO_TABLE + ":" + current_session_id, userReturn, secondsLo);
-		         responseVo.setCode(ExpresswayResponCode.SUCCESS.getCode());
-		         responseVo.setMessage("登录成功");
-		         responseVo.setData(response_map);
-
-		*/
+		//组织数据返回
 		response_map := make(map[string]interface{})
 		response_map["loginName"] = userReturn.LoginName
 		response_map["realName"] = userReturn.RealName
@@ -82,7 +66,8 @@ func Login(c *gin.Context) {
 		response_map["sessionId"] = current_session_id
 		response_map["userId"] = userReturn.Guid
 		//缓存用户信息和sessionid的捆绑
-		redisitem.SetByKey(rediskey.USER_LOGIN_INFO_TABLE+":"+current_session_id, userReturn)
+		secondsLo := 7200
+		redisitem.SetEXByKey(rediskey.USER_LOGIN_INFO_TABLE+":"+current_session_id, userReturn, secondsLo)
 		response.ShowData(c, response_map)
 	} else {
 		log.Println(errA.Error())
@@ -260,7 +245,7 @@ func QueryListUserAuth(c *gin.Context) {
 			temp_list = temp_list[0:0]
 			temp_list = t_list[0:]
 		}
-		response.ShowData(c,list)
+		response.ShowData(c, list)
 	} else {
 		log.Println(errA.Error())
 		response.ShowError(c, "执行失败")
@@ -276,5 +261,5 @@ func UploadFiles(c *gin.Context) {
 		c.SaveUploadedFile(file, file.Filename)
 		gofastdfs.UploadFiles(file)
 	}
-	response.ShowSuccess(c,"执行成功")
+	response.ShowSuccess(c, "执行成功")
 }

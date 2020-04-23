@@ -1,12 +1,12 @@
 package authorityservice
 
 import (
+	"github.com/gin-gonic/gin"
+	uuid `github.com/satori/go.uuid`
 	`go-authmanager/dbModule/dbauthority`
 	`go-authmanager/dbModule/dbrole`
 	"go-authmanager/module"
 	`go-authmanager/response`
-	"github.com/gin-gonic/gin"
-	uuid `github.com/satori/go.uuid`
 	`log`
 	`time`
 )

@@ -5,6 +5,8 @@ import (
 	"go-authmanager/database"
 	"go-authmanager/service/authorityservice"
 	`go-authmanager/service/commonservice`
+	`go-authmanager/service/configservice`
+	`go-authmanager/service/dictionaryservice`
 	"go-authmanager/service/roleservice"
 	"go-authmanager/service/userservice"
 	"github.com/gin-gonic/gin"
@@ -41,6 +43,31 @@ func main() {
 		authority.POST("/updateAuthority.htm", authorityservice.UpdateAuthority)
 		authority.POST("/deleteAuthority.htm", authorityservice.DeleteAuthority)
 		authority.POST("/queryPageListAuthority.htm", authorityservice.QueryPageListAuthority)
+	}
+
+	// TODO 系统配置
+	config := r.Group("/config")
+	{
+		config.POST("/createConfigGroup.htm", configservice.CreateConfigGroup)
+		config.POST("/updateConfigGroup.htm", configservice.UpdateConfigGroup)
+		config.POST("/deleteConfigGroup.htm", configservice.DeleteConfigGroup)
+		config.POST("/queryListConfigGroup.htm", configservice.QueryListConfigGroup)
+		config.POST("/createConfig.htm", configservice.CreateConfig)
+		config.POST("/updateConfig.htm", configservice.UpdateConfig)
+		config.POST("/deleteConfig.htm", configservice.DeleteConfig)
+		config.POST("/queryListConfig.htm", configservice.QueryListConfig)
+	}
+	//TODO 字典
+	dictionary:= r.Group("/dictionary")
+	{
+		dictionary.POST("/createDictionaryGroup.htm", dictionaryservice.CreateDictionaryGroup)
+		dictionary.POST("/updateDictionaryGroup.htm", dictionaryservice.UpdateDictionaryGroup)
+		dictionary.POST("/deleteDictionaryGroup.htm", dictionaryservice.DeleteDictionaryGroup)
+		dictionary.POST("/queryListDictionaryGroup.htm", dictionaryservice.QueryListDictionaryGroup)
+		dictionary.POST("/createDictionary.htm", dictionaryservice.CreateDictionary)
+		dictionary.POST("/updateDictionary.htm", dictionaryservice.UpdateDictionary)
+		dictionary.POST("/deleteDictionary.htm", dictionaryservice.DeleteDictionary)
+		dictionary.POST("/queryListDictionary.htm", dictionaryservice.QueryListDictionary)
 	}
 	common := r.Group("/common")
 	{
