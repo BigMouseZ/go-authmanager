@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	"go-authmanager/aop"
 	"go-authmanager/database"
 	"go-authmanager/service/authorityservice"
@@ -9,12 +10,24 @@ import (
 	`go-authmanager/service/dictionaryservice`
 	"go-authmanager/service/roleservice"
 	"go-authmanager/service/userservice"
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
-
+/*	url := "http://172.16.2.20:8100/expressway_track/shortpathtest/ShortPathTest.htm"
+	abody:=make(map[string]string,0)
+	abody["startGantryCode"] = "G008496949511004236"
+	abody["endGantryCode"] = "G008162237386915590"
+	resp,err:=goutils.PostUtil(url,abody,nil,nil )
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	fmt.Println(string(body))*/
 	database.Dbinit()
 	//Default返回一个默认的路由引擎
 	r := gin.Default()

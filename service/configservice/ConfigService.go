@@ -2,14 +2,9 @@ package configservice
 
 import (
 	"github.com/gin-gonic/gin"
-	uuid `github.com/satori/go.uuid`
-	`go-authmanager/dbModule/dbauthority`
-	`go-authmanager/dbModule/dbdictionary`
-	`go-authmanager/dbModule/dbrole`
 	"go-authmanager/module"
 	`go-authmanager/response`
 	`log`
-	`time`
 )
 
 func CreateConfigGroup(c *gin.Context) {
@@ -18,10 +13,9 @@ func CreateConfigGroup(c *gin.Context) {
 	if errA == nil {
 		//检查当前的权限名称key是否存在
 
-		insert := dbconfig.ConfigDictionaries{}
+		//insert := dbconfig.ConfigDictionaries{}
 
-
-
+/*
 
 		insert.AuthorityName = authParam.AuthorityName
 		_, err := insert.SelectByAuthorityName()
@@ -50,7 +44,7 @@ func CreateConfigGroup(c *gin.Context) {
 		insert.StartPath = authParam.StartPath
 		insert.CreateTime = time.Now()
 		insert.ModifyTime = time.Now()
-		insert.InsertSelective()
+		insert.InsertSelective()*/
 		response.ShowSuccess(c, "执行成功")
 	} else {
 		log.Println(errA.Error())
@@ -62,7 +56,7 @@ func UpdateConfigGroup(c *gin.Context) {
 	var configParam module.ConfigParameterParamModule
 	errA := c.ShouldBind(&configParam)
 	if errA == nil {
-		update := dbauthority.AuthAuthority{}
+	/*	update := dbauthority.AuthAuthority{}
 		//检查是否存在父级权限
 		if len(authParam.AuthParent) > 0 {
 			update.AuthorityName = authParam.AuthParent
@@ -82,7 +76,7 @@ func UpdateConfigGroup(c *gin.Context) {
 		update.Icon = authParam.Icon
 		update.Sort = authParam.Sort
 		update.StartPath = authParam.StartPath
-		update.ModifyTime = time.Now()
+		update.ModifyTime = time.Now()*/
 		response.ShowSuccess(c, "执行成功")
 	} else {
 		response.ShowError(c, "执行失败")
@@ -94,14 +88,14 @@ func DeleteConfigGroup(c *gin.Context) {
 	var configParam module.ConfigParameterParamModule
 	errA := c.ShouldBind(&configParam)
 	if errA == nil {
-		//删除权限关联的角色数据
+	/*	//删除权限关联的角色数据
 		deleteRoleAuth  := dbrole.AuthRoleAuthority{}
 		deleteRoleAuth.AuthorityId = authParam.AuthId
 		deleteRoleAuth.DeleteById()
 		//删除具体权限数据，由于权限是树形结构，当前暂要求删除当前的该权限，对于当前权限的子集暂时不做删除处理
 		deleteAuth:=dbauthority.AuthAuthority{}
 		deleteAuth.Guid = authParam.AuthId
-		deleteAuth.DeleteByPrimaryKey()
+		deleteAuth.DeleteByPrimaryKey()*/
 		response.ShowSuccess(c, "执行成功")
 	} else {
 		response.ShowError(c, "执行失败")
@@ -113,9 +107,9 @@ func QueryListConfigGroup(c *gin.Context) {
 	var configParam module.ConfigParameterParamModule
 	errA := c.ShouldBind(&configParam)
 	if errA == nil {
-		queryAuth:=dbauthority.AuthAuthority{}
+		/*queryAuth:=dbauthority.AuthAuthority{}
 		pageList :=queryAuth.ListAllByCondition(&authParam)
-		response.ShowData(c, pageList)
+		response.ShowData(c, pageList)*/
 	} else {
 		response.ShowError(c, "执行失败")
 	}
@@ -128,7 +122,7 @@ func CreateConfig(c *gin.Context) {
 	errA := c.ShouldBind(&configParam)
 	if errA == nil {
 		//检查当前的权限名称key是否存在
-
+/*
 		insert := dbauthority.AuthAuthority{}
 		insert.AuthorityName = authParam.AuthorityName
 		_, err := insert.SelectByAuthorityName()
@@ -157,7 +151,7 @@ func CreateConfig(c *gin.Context) {
 		insert.StartPath = authParam.StartPath
 		insert.CreateTime = time.Now()
 		insert.ModifyTime = time.Now()
-		insert.InsertSelective()
+		insert.InsertSelective()*/
 		response.ShowSuccess(c, "执行成功")
 	} else {
 		log.Println(errA.Error())
@@ -169,7 +163,7 @@ func UpdateConfig(c *gin.Context) {
 	var configParam module.ConfigParameterParamModule
 	errA := c.ShouldBind(&configParam)
 	if errA == nil {
-		update := dbauthority.AuthAuthority{}
+		/*update := dbauthority.AuthAuthority{}
 		//检查是否存在父级权限
 		if len(authParam.AuthParent) > 0 {
 			update.AuthorityName = authParam.AuthParent
@@ -189,7 +183,7 @@ func UpdateConfig(c *gin.Context) {
 		update.Icon = authParam.Icon
 		update.Sort = authParam.Sort
 		update.StartPath = authParam.StartPath
-		update.ModifyTime = time.Now()
+		update.ModifyTime = time.Now()*/
 		response.ShowSuccess(c, "执行成功")
 	} else {
 		response.ShowError(c, "执行失败")
@@ -201,14 +195,14 @@ func DeleteConfig(c *gin.Context) {
 	var configParam module.ConfigParameterParamModule
 	errA := c.ShouldBind(&configParam)
 	if errA == nil {
-		//删除权限关联的角色数据
+		/*//删除权限关联的角色数据
 		deleteRoleAuth  := dbrole.AuthRoleAuthority{}
 		deleteRoleAuth.AuthorityId = authParam.AuthId
 		deleteRoleAuth.DeleteById()
 		//删除具体权限数据，由于权限是树形结构，当前暂要求删除当前的该权限，对于当前权限的子集暂时不做删除处理
 		deleteAuth:=dbauthority.AuthAuthority{}
 		deleteAuth.Guid = authParam.AuthId
-		deleteAuth.DeleteByPrimaryKey()
+		deleteAuth.DeleteByPrimaryKey()*/
 		response.ShowSuccess(c, "执行成功")
 	} else {
 		response.ShowError(c, "执行失败")
@@ -220,9 +214,9 @@ func QueryListConfig(c *gin.Context) {
 	var configParam module.ConfigParameterParamModule
 	errA := c.ShouldBind(&configParam)
 	if errA == nil {
-		queryAuth:=dbauthority.AuthAuthority{}
+	/*	queryAuth:=dbauthority.AuthAuthority{}
 		pageList :=queryAuth.ListAllByCondition(&authParam)
-		response.ShowData(c, pageList)
+		response.ShowData(c, pageList)*/
 	} else {
 		response.ShowError(c, "执行失败")
 	}
