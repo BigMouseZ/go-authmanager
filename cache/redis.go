@@ -1,14 +1,16 @@
 package cache
 
 import (
-	. "go-authmanager/conf"
 	"github.com/gomodule/redigo/redis"
+	. "go-authmanager/conf"
+	`log`
 	"time"
 )
 
 var RedisClient *redis.Pool
 
 func init() {
+	log.Println("初始化redis中")
 	// 建立连接池
 	RedisClient = &redis.Pool{
 		// 从配置文件获取maxidle以及maxactive，取不到则用后面的默认值
@@ -30,4 +32,5 @@ func init() {
 			return conn, nil
 		},
 	}
+	log.Println("初始化redis完毕")
 }
