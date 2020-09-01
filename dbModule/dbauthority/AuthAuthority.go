@@ -1,9 +1,9 @@
 package dbauthority
 
 import (
+	"fmt"
 	"go-authmanager/database"
-	`go-authmanager/module`
-	`fmt`
+	"go-authmanager/module"
 	"time"
 )
 
@@ -19,7 +19,6 @@ type AuthAuthority struct {
 	ParentId      string    `json:"parentId" gorm:"column:parent_id"`
 	CreateTime    time.Time `json:"createTime" gorm:"column:create_time"`
 	ModifyTime    time.Time `json:"modifyTime" gorm:"column:modify_time"`
-
 }
 
 type AuthAuthorityForList struct {
@@ -28,12 +27,12 @@ type AuthAuthorityForList struct {
 	AuthorityType  string `json:"authorityType" gorm:"column:authority_type"`
 	StartPath      string `json:"startPath" gorm:"column:start_path"`
 	DisplayName    string `json:"displayName" gorm:"column:display_name"`
-	Sort           int64 `json:"sort" gorm:"column:sort"`
+	Sort           int64  `json:"sort" gorm:"column:sort"`
 	Icon           string `json:"icon" gorm:"column:icon"`
 	Command        string `json:"command" gorm:"column:command"`
 	ParentId       string `json:"parentId" gorm:"column:parent_id"`
 	AuthorityState string `json:"parentId" gorm:"column:authority_state"`
-	ParentName    string    `json:"parentName" gorm:"column:parent_name"`
+	ParentName     string `json:"parentName" gorm:"column:parent_name"`
 }
 
 func (a *AuthAuthority) InsertSelective() int64 {
